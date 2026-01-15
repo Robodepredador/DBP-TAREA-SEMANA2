@@ -1,69 +1,59 @@
-# Guía de usuario — Tarea Semana 2
+# Guía de usuario para principiantes — Tarea Semana 2
 
-Propósito
---------
-Aplicación educativa con una colección de vistas (Ejercicio1..Ejercicio19). Útil para revisar ejemplos de Razor Views y manejo de rutas en ASP.NET Core.
+Bienvenido
+---------
+Esta guía breve está pensada para personas que exploran el proyecto por primera vez. Explica qué hace la aplicación, cómo navegarla y cómo probar la aplicación paso a paso.
+
+Qué es esta aplicación
+----------------------
+El programa consiste en una colección de vistas Razor (ejercicios) construida sobre .NET 10. Cada "Ejercicio" es una página demostrativa que ilustra un comportamiento o componente web sencillo (formularios, scripts, estilos, etc.). El Ejercicio 13 es una pequeña herramienta de consulta de estado de envíos (simulada).
+
+Requisitos mínimos
+------------------
+- .NET SDK 10 instalado.
+- Navegador moderno (Chrome, Edge, Firefox).
+- (Opcional) Visual Studio 2026 para editar y depurar.
+
+Arrancar la aplicación
+----------------------
+1. Abrir terminal en la carpeta raíz del proyecto (donde está `WebSystemExample.csproj`).
+2. Ejecutar:
+   - `dotnet restore`
+   - `dotnet run`
+3. Abrir el navegador en la URL que muestre la consola (p. ej. `https://localhost:5001`).
+
+Si usas Visual Studio 2026:
+- Abrir la solución y ejecutar con __F5__ o desde el menú __Debug > Start Debugging__.
 
 Navegación básica
 -----------------
 - Página principal: `/` o `/Home/Index`
-- Privacy: `/Home/Privacy`
-- Ejercicios: `/Home/Ejercicio1` … `/Home/Ejercicio19`
+- Privacidad: `/Home/Privacy`
+- Lista de ejercicios: `/Home/Ejercicio1` … `/Home/Ejercicio19`
+- Ejercicio 13 (ejemplo): `/Home/Ejercicio13`
 
-Archivos clave
--------------
-- `Controllers/HomeController.cs` — define las acciones disponibles:
-  - `Index`, `Privacy`, `Ejercicio1`…`Ejercicio19`, `Error`.
-- `Views/Home/` — contiene las vistas `.cshtml` para cada acción.
-- `Views/Shared/_Layout.cshtml` — layout común (navegación, referencias CSS/JS).
-- `wwwroot/` — hojas de estilo, scripts y assets. Ej.: `wwwroot/css/pages/estiloNavBar.css`.
-- `WebSystemExample.csproj` — proyect file (target `net10.0`).
+Tour práctico — Ejercicio 13
+----------------------------
+Propósito: consultar el "estado" de un envío mediante un código (simulado, en memoria).
 
-Cómo usar la aplicación (casos de uso)
--------------------------------------
-1. Navegar entre ejercicios:
-   - Abrir el navegador y acceder a `/Home/EjercicioX`.
-2. Modificar una vista:
-   - Editar `Views/Home/EjercicioX.cshtml`. Guardar y recargar la página.
-3. Añadir un nuevo ejercicio:
-   - En `Controllers/HomeController.cs` añadir un método `public IActionResult Ejercicio20() { return View(); }`.
-   - Crear `Views/Home/Ejercicio20.cshtml`.
-4. Añadir CSS/JS:
-   - Colocar archivos en `wwwroot/css` o `wwwroot/js` y referenciarlos en `_Layout.cshtml` o en la vista específica.
+<img width="1892" height="894" alt="image" src="https://github.com/user-attachments/assets/ff4e31dd-f923-410f-9cc1-85d174cb484e" />
 
-Desarrollo y depuración
------------------------
-- Ejecutar en Visual Studio 2026 con __F5__ o __Debug > Start Debugging__.
-- Para ver logs de arranque, revisar la salida de la aplicación en la ventana Output.
-- Si la vista devuelve error, comprobar la ruta/nombre del archivo `.cshtml` y el nombre de la acción en `HomeController`.
+Archivos clave:
+- Vista: `Views/Home/Ejercicio13.cshtml`
+- Script: `wwwroot/js/ejercicio13.js`
 
-Despliegue
-----------
-- `dotnet publish -c Release -o ./publish` y desplegar la carpeta `publish` en el servidor/host deseado.
+Cómo usarlo:
+1. Abrir `/Home/Ejercicio13`.
+2. Introducir un código de seguimiento en el campo (por ejemplo `ENV001`, `ENV002`, `ENV003`, `ABC123`, `XYZ999`).
+3. Pulsar el botón “Buscar”.
+4. Verás un mensaje:
+   - Advertencia si el campo está vacío.
+   - Éxito si el código existe (muestra el estado).
+   - Error si no se encuentra el código.
 
-Buenas prácticas sugeridas
---------------------------
-- Mantener acciones y vistas con nombres coherentes.
-- Separar estilos por páginas en `wwwroot/css/pages/`.
-- Añadir validaciones del lado servidor en caso de formularios.
-- Incluir un `LICENSE` si el proyecto será público.
-
-Resolución de problemas comunes
--------------------------------
-- Error 404 en una vista:
-  - Verificar que exista `Views/{Controller}/{Action}.cshtml`.
-- Cambios no aplican tras editar:
-  - Reiniciar la app (`dotnet run`) o recargar el perfil de depuración.
-- Paquetes o SDK no encontrados:
-  - Asegurarse de tener instalado .NET SDK 10 y ejecutar `dotnet restore`.
-
-Resumen rápido de comandos
--------------------------
-- Restaurar: `dotnet restore`
-- Ejecutar: `dotnet run`
-- Publicar: `dotnet publish -c Release -o ./publish`
-- Depurar en VS: iniciar con __F5__
-
-Fin
----
-Abrir issues para dudas o pedir ampliación (p. ej. añadir diagramas de flujo, screenshots, o una sección de tests).
+Probar rápidamente (valores de ejemplo)
+- `ENV001` → "En tránsito"
+- `ENV002` → "En reparto"
+- `ENV003` → "Entregado"
+- `ABC123` → "En tránsito"
+- `XYZ999` → "Entregado"
