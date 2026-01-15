@@ -57,3 +57,6 @@ Probar rápidamente (valores de ejemplo)
 - `ENV003` → "Entregado"
 - `ABC123` → "En tránsito"
 - `XYZ999` → "Entregado"
+
+<img width="1893" height="904" alt="image" src="https://github.com/user-attachments/assets/1b54157e-1b14-46e3-a761-705a57e44e0f" />
+
